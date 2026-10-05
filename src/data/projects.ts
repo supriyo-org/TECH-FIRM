@@ -70,6 +70,49 @@ export const PROJECTS_DATA: ProjectItem[] = [
     }
   },
   {
+    id: "pvc-nfc-review-cards",
+    name: "TapReview™ – NFC & QR Smart PVC Google Review Cards",
+    category: "Smart Cards & Review Systems",
+    industry: "PVC Review Collection Cards & Business Growth Hardware",
+    shortDescription: "Custom printed NFC + QR Google review collection cards on durable PVC plastic, complete with partner distribution and client recruiting.",
+    fullDescription: "Our specialized physical-to-digital growth service: High-grade PVC review collection cards engineered with contactless NTAG213/215 NFC microchips and high-contrast dynamic QR codes. Customers simply tap their smartphone or scan the QR code to instantly open the business's direct 5-star Google Review submission page. We provide complete end-to-end design, custom branding, chip encoding, batch card printing, bulk distribution, and recruiting field agents/resellers to scale local business adoption.",
+    deliverables: [
+      "Custom Branded PVC Card Printing (Matte / Gloss UV Finish)",
+      "High-Sensitivity Contactless NFC Microchip Encoding",
+      "Dynamic Direct Google Review QR Code Generation",
+      "Countertop Display Stands & Acrylic Holders",
+      "Client Onboarding, Sales Recruiting & Reseller Program",
+      "Online Batch Order & Customization Inquiry System"
+    ],
+    keyFeatures: [
+      "One-tap review submission: Tap with iPhone or Android to immediately pop up Google review box",
+      "Dual technology: Works with both Contactless NFC and camera QR scanning for 100% phone compatibility",
+      "Premium waterproof & scratch-resistant PVC credit-card grade material (85.6mm x 54mm)",
+      "No app download or battery required — powered passively by customer phone NFC field",
+      "Custom business logo, brand color styling, and verified Google Business profile linking",
+      "Active production service: On-demand printing, local business sales, and agent recruitment"
+    ],
+    metricsOrHighlight: "Active Manufacturing, Sales & Recruiting",
+    liveUrl: "https://nexorastudios.com/#review-cards",
+    featured: true,
+    isRealClientProject: true,
+    projectStatus: "completed",
+    statusLabel: "Active Production & Service",
+    themeColor: "#4285F4",
+    heroMockup: {
+      tagline: "Tap to Review on Google — Smart PVC Review Cards",
+      subtext: "Turn walk-in customers into 5-star Google reviews in 3 seconds. Tap with phone or scan QR code.",
+      ctaLabel: "Order Custom Cards / Join Reseller Team",
+      accentColor: "#34A853",
+      navItems: ["How NFC Works", "Card Designs", "Pricing & Packs", "Become a Reseller"],
+      bannerHighlights: [
+        { label: "Material", value: "Premium PVC + NFC" },
+        { label: "Technology", value: "NFC Tap & QR Code" },
+        { label: "Review Rate", value: "+340% More Reviews" }
+      ]
+    }
+  },
+  {
     id: "salon-dashboard",
     name: "Salon Website & Booking Dashboard",
     category: "Salons & Grooming",
@@ -285,6 +328,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
 
 export const PROJECT_CATEGORIES = [
   "All",
+  "Smart Cards & Review Systems",
   "Salons & Grooming",
   "Business Websites",
   "Restaurants & Cafés",

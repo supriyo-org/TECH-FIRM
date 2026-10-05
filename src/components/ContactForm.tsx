@@ -94,17 +94,57 @@ export function ContactForm({
         }),
       });
 
+      let assignedRef = `NXR-${Math.floor(100000 + Math.random() * 900000)}`;
+
       if (response.ok) {
         const data = await response.json();
-        setSubmissionRef(data.referenceId || `NXR-${Math.floor(100000 + Math.random() * 900000)}`);
-      } else {
-        // Fallback reference if server route is offline in pure static mode
-        setSubmissionRef(`NXR-${Math.floor(100000 + Math.random() * 900000)}`);
+        if (data.referenceId) assignedRef = data.referenceId;
       }
+      setSubmissionRef(assignedRef);
+
+      // Save locally to localStorage so inquiries modal can show offline or client-cached submissions instantly
+      try {
+        const existing = JSON.parse(localStorage.getItem("nexora_inquiries_cache") || "[]");
+        const newRecord = {
+          referenceId: assignedRef,
+          fullName: formData.fullName.trim(),
+          businessName: formData.businessName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || "Not provided",
+          projectType: formData.projectType,
+          budget: formData.budget || "Standard (₹1,200 + ₹300/mo)",
+          message: formData.message.trim(),
+          timestamp: new Date().toISOString().replace("T", " ").substring(0, 19),
+          status: "New",
+        };
+        localStorage.setItem("nexora_inquiries_cache", JSON.stringify([newRecord, ...existing]));
+      } catch {
+        // Ignored
+      }
+
       setSubmissionSuccess(true);
     } catch {
       // Graceful offline fallback
-      setSubmissionRef(`NXR-${Math.floor(100000 + Math.random() * 900000)}`);
+      const fallbackRef = `NXR-${Math.floor(100000 + Math.random() * 900000)}`;
+      setSubmissionRef(fallbackRef);
+      try {
+        const existing = JSON.parse(localStorage.getItem("nexora_inquiries_cache") || "[]");
+        const newRecord = {
+          referenceId: fallbackRef,
+          fullName: formData.fullName.trim(),
+          businessName: formData.businessName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim() || "Not provided",
+          projectType: formData.projectType,
+          budget: formData.budget || "Standard (₹1,200 + ₹300/mo)",
+          message: formData.message.trim(),
+          timestamp: new Date().toISOString().replace("T", " ").substring(0, 19),
+          status: "New",
+        };
+        localStorage.setItem("nexora_inquiries_cache", JSON.stringify([newRecord, ...existing]));
+      } catch {
+        // Ignored
+      }
       setSubmissionSuccess(true);
     } finally {
       setIsSubmitting(false);
@@ -304,6 +344,8 @@ export function ContactForm({
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#0E1320] border border-neutral-800 text-xs text-white focus:outline-none focus:border-sky-500 transition-colors cursor-pointer"
                       >
                         <option value="Business Website">Business Website</option>
+                        <option value="Smart PVC NFC Google Review Cards (Bulk / Single)">Smart PVC NFC Google Review Cards (Print & Setup)</option>
+                        <option value="Become a Sales Partner / Reseller for PVC Review Cards">Join as Sales Agent / Reseller (Recruiting)</option>
                         <option value="Restaurant & Café Website">Restaurant & Café Website</option>
                         <option value="Salon & Grooming Website with Dashboard">Salon Website & Booking Dashboard</option>
                         <option value="Travel & Tourism Website">Travel & Tourism Website</option>

@@ -1,12 +1,13 @@
-import { ArrowUp, Mail, ShieldCheck, ExternalLink } from "lucide-react";
+import { ArrowUp, Mail, ShieldCheck, ExternalLink, Inbox } from "lucide-react";
 import { SITE_CONFIG } from "../config/siteConfig";
 
 interface FooterProps {
   onOpenLegal: (docId: string) => void;
   onNavigate: (sectionId: string) => void;
+  onOpenInquiries?: () => void;
 }
 
-export function Footer({ onOpenLegal, onNavigate }: FooterProps) {
+export function Footer({ onOpenLegal, onNavigate, onOpenInquiries }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -30,7 +31,7 @@ export function Footer({ onOpenLegal, onNavigate }: FooterProps) {
               {SITE_CONFIG.brandName}
             </a>
             <p className="text-xs text-neutral-400 leading-relaxed max-w-sm">
-              {SITE_CONFIG.brandTagline} We create fast, responsive, and tailored websites for businesses, salons, restaurants, travel agencies, and modern service practices.
+              {SITE_CONFIG.brandTagline} We create fast, responsive websites and manufacture Smart PVC Google Review NFC cards & stands for salons, restaurants, clinics, and local retail businesses.
             </p>
             <div className="pt-2 flex items-center gap-2 text-[11px] text-neutral-400">
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
@@ -154,8 +155,17 @@ export function Footer({ onOpenLegal, onNavigate }: FooterProps) {
 
           {/* Col 4: Official Contact & Socials */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="text-xs font-semibold text-white uppercase tracking-wider">
-              Inquiries
+            <div className="text-xs font-semibold text-white uppercase tracking-wider flex items-center justify-between">
+              <span>Inquiries</span>
+              {onOpenInquiries && (
+                <button
+                  onClick={onOpenInquiries}
+                  className="text-[11px] font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
+                >
+                  <Inbox className="w-3 h-3" />
+                  <span>View All Leads</span>
+                </button>
+              )}
             </div>
             <div className="space-y-2">
               <div>
@@ -167,6 +177,18 @@ export function Footer({ onOpenLegal, onNavigate }: FooterProps) {
                   {SITE_CONFIG.contactEmail}
                 </a>
               </div>
+
+              {onOpenInquiries && (
+                <div className="pt-1">
+                  <button
+                    onClick={onOpenInquiries}
+                    className="w-full py-1.5 px-3 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/20 text-sky-400 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  >
+                    <Inbox className="w-3.5 h-3.5" />
+                    <span>Open Public Enquiries Dashboard</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="pt-2">

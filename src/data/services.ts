@@ -106,5 +106,20 @@ export const SERVICES_DATA: ServiceItem[] = [
     ],
     idealFor: "Every business wanting search engines to properly index, understand, and display their content.",
     outcome: "A clean technical foundation that allows search engines to read your website accurately without technical hurdles."
+  },
+  {
+    id: "pvc-review-cards-service",
+    number: "08",
+    title: "Smart PVC Google Review Cards & Reseller Network",
+    shortDescription: "Custom printed NFC + QR PVC Google review collection cards, counter stands, client bulk selling, and sales partner recruiting.",
+    deliverables: [
+      "Custom branded PVC card design and UV-protected printing",
+      "NFC chip encoding directly to your official Google Review link",
+      "High-resolution scannable QR backup print on rear/front",
+      "Countertop display acrylic stands & lanyards",
+      "Bulk merchant order bundles & field sales agent recruitment"
+    ],
+    idealFor: "Salons, dental clinics, restaurants, retail shops, auto service hubs, and local entrepreneurs wanting to sell cards or collect 5-star Google reviews.",
+    outcome: "Instant 5-star Google review growth at point of sale + a profitable recurring reseller/recruiting opportunity."
   }
 ];

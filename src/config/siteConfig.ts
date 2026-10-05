@@ -39,8 +39,8 @@ export interface SiteConfig {
 
 export const SITE_CONFIG: SiteConfig = {
   brandName: "NEXORA  Studios",
-  brandTagline: "Modern websites that make businesses look professional online.",
-  brandDescription: "We design and develop fast, responsive, and tailored websites for ambitious businesses, salons, restaurants, travel agencies, and personal brands.",
+  brandTagline: "Modern websites & Smart PVC Google Review Cards that help businesses grow.",
+  brandDescription: "We design and develop fast, responsive websites and manufacture custom NFC + QR Smart PVC Google Review Collection Cards with bulk merchant distribution and sales agent recruiting.",
   contactEmail: "productionsupriyo@gmail.com",
   supportEmail: "productionsupriyo@gmail.com",
   standardStartingPrice: 1200,

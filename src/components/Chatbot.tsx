@@ -85,6 +85,16 @@ export function Chatbot({ onNavigateSection, onOpenPricingQuote }: ChatbotProps)
       };
     }
 
+    if (q.includes("pvc") || q.includes("nfc") || q.includes("card") || q.includes("review card") || q.includes("reseller") || q.includes("recruit")) {
+      return {
+        text: "Yes! We manufacture custom-printed Smart PVC Google Review Cards equipped with contactless NFC microchips and dynamic QR codes. Customers simply tap their phone on the card or counter stand to leave an instant 5-star Google review. We also actively recruit field sales agents and resellers with high profit margins.",
+        actions: [
+          { label: "View Smart Cards in Portfolio", actionId: "view_work" },
+          { label: "Order Cards or Apply as Reseller", actionId: "contact" },
+        ],
+      };
+    }
+
     if (actionId === "start" || q.includes("start") || q.includes("hire") || q.includes("contact") || q.includes("inquiry") || q.includes("reach")) {
       return {
         text: `To start a project, simply submit an inquiry via our contact form with your business name, desired website type, and timeline. Our team will review your specifications and reply with a transparent scope and quote within 24 business hours. You can also email us directly at ${SITE_CONFIG.contactEmail}.`,

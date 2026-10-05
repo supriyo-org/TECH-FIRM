@@ -9,6 +9,14 @@ export interface CategoryItem {
 
 export const WHAT_WE_BUILD_CATEGORIES: CategoryItem[] = [
   {
+    id: "pvc-review-cards",
+    title: "PVC Smart Review Cards",
+    subtitle: "NFC Tap & QR Review Cards & Agent Recruiting",
+    description: "Hardware & digital review collection: Custom printed PVC NFC cards and acrylic counter stands that instantly trigger Google 5-star reviews on tap. We handle custom card printing, chip encoding, bulk sales, and reseller recruitment.",
+    commonFeatures: ["NFC Chip (NTAG213/215)", "Dynamic Google Review QR", "Waterproof PVC Finish", "Bulk Reseller Packs & Recruiting"],
+    sampleTypes: "Salons, cafés, retail stores, clinics, restaurants, car wash & service centers"
+  },
+  {
     id: "business-websites",
     title: "Business Websites",
     subtitle: "Credibility & Lead Capture",

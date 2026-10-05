@@ -18,12 +18,14 @@ import { LegalModal } from "./components/LegalModal";
 import { CookieBanner } from "./components/CookieBanner";
 import { Chatbot } from "./components/Chatbot";
 import { NotFoundPage } from "./components/NotFoundPage";
+import { InquiriesModal } from "./components/InquiriesModal";
 import { PROJECTS_DATA, ProjectItem } from "./data/projects";
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [liveViewingProject, setLiveViewingProject] = useState<ProjectItem | null>(null);
   const [activeLegalDoc, setActiveLegalDoc] = useState<string | null>(null);
+  const [inquiriesModalOpen, setInquiriesModalOpen] = useState(false);
   const [contactInitialType, setContactInitialType] = useState<string>("Business Website");
   const [is404Route, setIs404Route] = useState(false);
 
@@ -101,7 +103,10 @@ export default function App() {
       <PromotionalBanner onClaimOffer={() => handlePricingQuote("Durga Puja Festive Offer")} />
 
       {/* Sticky Header Navigation */}
-      <Navbar onOpenContact={() => scrollToSection("contact")} />
+      <Navbar 
+        onOpenContact={() => scrollToSection("contact")}
+        onOpenInquiries={() => setInquiriesModalOpen(true)}
+      />
 
       {is404Route ? (
         <main>
@@ -150,6 +155,13 @@ export default function App() {
       <Footer
         onOpenLegal={(docId) => setActiveLegalDoc(docId)}
         onNavigate={scrollToSection}
+        onOpenInquiries={() => setInquiriesModalOpen(true)}
+      />
+
+      {/* Public Enquiries & Lead Dashboard Modal */}
+      <InquiriesModal
+        isOpen={inquiriesModalOpen}
+        onClose={() => setInquiriesModalOpen(false)}
       />
 
       {/* Project Preview Modal */}

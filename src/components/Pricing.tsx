@@ -156,6 +156,61 @@ export function Pricing({ onRequestQuote }: PricingProps) {
           ))}
         </div>
 
+        {/* Smart PVC Google Review Cards Pricing & Reseller Box */}
+        <div className="mb-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-950/30 via-neutral-900/60 to-emerald-950/20 border-2 border-sky-500/30 relative overflow-hidden">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                  Hardware & Physical Print Service
+                </span>
+                <span className="text-[11px] font-semibold text-emerald-400 font-mono">
+                  ● Active Production & Reseller Recruiting
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white font-['Syne'] tracking-tight">
+                Smart PVC Google Review Cards & Countertop Stands
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                Contactless NFC + high-contrast QR cards printed on durable, waterproof PVC credit-card grade plastic. Customers tap their phone to instantly leave a 5-star Google review. Ideal for salons, clinics, cafés, retail, and local service businesses.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs">
+                <div className="p-2 rounded-lg bg-black/40 border border-neutral-800 text-neutral-200">
+                  <div className="text-[10px] text-neutral-400">Starter Single Card</div>
+                  <div className="font-bold text-white text-sm">₹499 <span className="text-[10px] font-normal text-neutral-400">/ card</span></div>
+                </div>
+                <div className="p-2 rounded-lg bg-black/40 border border-neutral-800 text-neutral-200">
+                  <div className="text-[10px] text-neutral-400">Card + Acrylic Stand</div>
+                  <div className="font-bold text-white text-sm">₹699 <span className="text-[10px] font-normal text-neutral-400">/ set</span></div>
+                </div>
+                <div className="p-2 rounded-lg bg-black/40 border border-neutral-800 text-neutral-200">
+                  <div className="text-[10px] text-neutral-400">Store Pack (3 Cards)</div>
+                  <div className="font-bold text-sky-400 text-sm">₹1,299 <span className="text-[10px] font-normal text-neutral-400">/ pack</span></div>
+                </div>
+                <div className="p-2 rounded-lg bg-black/40 border border-neutral-800 text-neutral-200">
+                  <div className="text-[10px] text-neutral-400">Reseller / Bulk 20+</div>
+                  <div className="font-bold text-emerald-400 text-sm">₹249 <span className="text-[10px] font-normal text-neutral-400">/ card (Bulk)</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+              <button
+                onClick={() => onRequestQuote("Smart PVC NFC Google Review Cards (Bulk / Single)")}
+                className="px-6 py-3 rounded-xl text-xs font-bold text-slate-950 bg-sky-400 hover:bg-sky-300 transition-all cursor-pointer shadow-md text-center"
+              >
+                Order Custom Cards
+              </button>
+              <button
+                onClick={() => onRequestQuote("Become a Sales Partner / Reseller for PVC Review Cards")}
+                className="px-6 py-3 rounded-xl text-xs font-semibold text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/40 border border-emerald-500/40 transition-all cursor-pointer text-center"
+              >
+                Join as Sales Reseller / Agent
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Pricing Factors Explanatory Box */}
         <div className="p-6 sm:p-8 rounded-xl bg-neutral-900/30 border border-neutral-800/80">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-3">

@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight, Moon, Sun } from "lucide-react";
+import { Menu, X, ArrowUpRight, Moon, Sun, Inbox } from "lucide-react";
 import { SITE_CONFIG } from "../config/siteConfig";
 import { useTheme } from "../context/ThemeContext";
 
 interface NavbarProps {
   onOpenContact?: () => void;
+  onOpenInquiries?: () => void;
 }
 
-export function Navbar({ onOpenContact }: NavbarProps) {
+export function Navbar({ onOpenContact, onOpenInquiries }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -110,7 +111,22 @@ export function Navbar({ onOpenContact }: NavbarProps) {
           </div>
 
           {/* RIGHT HEADER: Dark mode & light mode toggle with Crescent moon & Sun */}
-          <div className="flex-1 flex items-center justify-end gap-2.5">
+          <div className="flex-1 flex items-center justify-end gap-2 sm:gap-2.5">
+            {/* View Inquiries Button */}
+            {onOpenInquiries && (
+              <button
+                onClick={onOpenInquiries}
+                className="p-2 sm:px-2.5 sm:py-1.5 rounded-xl border border-white/[0.1] bg-white/[0.05] hover:bg-white/[0.12] text-neutral-200 hover:text-white active:scale-95 transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
+                aria-label="View public enquiries and leads"
+                title="View Public Enquiries & Lead Dashboard"
+              >
+                <Inbox className="w-4 h-4 text-sky-400" />
+                <span className="text-[11px] font-semibold text-neutral-200 hidden lg:inline">
+                  Inquiries
+                </span>
+              </button>
+            )}
+
             {/* Theme toggle button */}
             <button
               onClick={toggleTheme}
@@ -170,11 +186,26 @@ export function Navbar({ onOpenContact }: NavbarProps) {
             </nav>
 
             <div className="pt-4 mt-2 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="text-xs text-neutral-400 flex items-center gap-2">
-                <span>Inquiries:</span>
-                <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-sky-400 hover:underline">
-                  {SITE_CONFIG.contactEmail}
-                </a>
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+                <div className="text-xs text-neutral-400 flex items-center gap-2">
+                  <span>Inquiries:</span>
+                  <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-sky-400 hover:underline">
+                    {SITE_CONFIG.contactEmail}
+                  </a>
+                </div>
+
+                {onOpenInquiries && (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      onOpenInquiries();
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 text-xs font-semibold cursor-pointer"
+                  >
+                    <Inbox className="w-3.5 h-3.5" />
+                    <span>View Public Enquiries</span>
+                  </button>
+                )}
               </div>
 
               <button

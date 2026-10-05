@@ -44,6 +44,14 @@ export function LiveProjectView({ project, onClose }: LiveProjectViewProps) {
   const [freightType, setFreightType] = useState("Refrigerated Cold Chain");
   const [calcQuote, setCalcQuote] = useState<string | null>(null);
 
+  // Specific state for PVC Smart Review Cards Demo
+  const [cardColorTheme, setCardColorTheme] = useState<"classic" | "gradient" | "dark">("classic");
+  const [cardBusinessName, setCardBusinessName] = useState("The Royal Salon & Spa");
+  const [tapSimulationActive, setTapSimulationActive] = useState(false);
+  const [cardOrderPack, setCardOrderPack] = useState("Store Pack (3 Cards + 1 Acrylic Stand) — ₹1,299");
+  const [cardOrderSuccess, setCardOrderSuccess] = useState(false);
+  const [resellerApplicationSuccess, setResellerApplicationSuccess] = useState(false);
+
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setBookingSuccess(true);
@@ -847,6 +855,366 @@ export function LiveProjectView({ project, onClose }: LiveProjectViewProps) {
                   </div>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* PVC Smart Review Cards Live Interactive System */}
+          {project.id === "pvc-nfc-review-cards" && (
+            <div className="bg-[#080C16] text-neutral-200 min-h-screen">
+              {/* Product Header */}
+              <div className="bg-gradient-to-r from-blue-900/60 via-neutral-900 to-emerald-950/40 border-b border-blue-500/20 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center font-bold text-white text-xs shadow-md">
+                    NFC
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-base text-white tracking-tight font-['Syne']">
+                        TapReview™ Smart PVC Google Cards
+                      </span>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+                        NTAG215 Dual NFC + QR
+                      </span>
+                    </div>
+                    <p className="text-xs text-neutral-400">
+                      Print Manufacturing · Local Merchant Direct Sales · Reseller Recruiting
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById("reseller-section");
+                      el?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 cursor-pointer transition-all"
+                  >
+                    Reseller Program & Recruiting ↗
+                  </button>
+                </div>
+              </div>
+
+              {/* Interactive Card Customizer & Tap Simulator */}
+              <div className="max-w-5xl mx-auto px-6 py-10 space-y-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left: Interactive 3D/Card Viewport */}
+                  <div className="lg:col-span-6 flex flex-col items-center">
+                    <div className="text-xs font-mono uppercase tracking-wider text-sky-400 mb-3 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Live PVC Card Preview (Credit Card Spec: 85.6 × 54 mm)</span>
+                    </div>
+
+                    {/* The Rendered PVC Card */}
+                    <div
+                      className={`w-[320px] sm:w-[350px] h-[200px] sm:h-[220px] rounded-2xl p-5 relative overflow-hidden shadow-2xl transition-all duration-300 border ${
+                        cardColorTheme === "classic"
+                          ? "bg-gradient-to-br from-white via-slate-50 to-blue-50 text-slate-900 border-slate-300 shadow-blue-500/10"
+                          : cardColorTheme === "gradient"
+                          ? "bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500 text-white border-blue-400/40 shadow-indigo-500/20"
+                          : "bg-gradient-to-br from-neutral-900 via-neutral-950 to-black text-white border-neutral-700 shadow-black/80"
+                      }`}
+                    >
+                      {/* Top Brand & Google Logo */}
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-2">
+                          <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                          </svg>
+                          <span className={`text-[11px] font-bold uppercase tracking-wider ${cardColorTheme === "classic" ? "text-slate-700" : "text-white/90"}`}>
+                            Review Us On Google
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {[1, 2, 3, 4, 5].map((s) => (
+                            <span key={s} className="text-amber-400 text-sm">★</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Center NFC Wave & Tap Graphic */}
+                      <div className="my-3 text-center">
+                        <div className="inline-flex items-center justify-center gap-2 p-2 rounded-xl bg-black/5 dark:bg-white/10">
+                          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M6 18a10 10 0 0 1 0-12" strokeLinecap="round" />
+                            <path d="M10 15a5 5 0 0 1 0-6" strokeLinecap="round" />
+                            <path d="M14 18a10 10 0 0 0 0-12" strokeLinecap="round" />
+                            <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                          </svg>
+                          <div className="text-left">
+                            <div className="text-xs font-black tracking-tight uppercase">TAP PHONE HERE</div>
+                            <div className="text-[9px] opacity-75 font-mono">Instant 5★ Review Link</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom Business Name & Microchip Note */}
+                      <div className="flex items-end justify-between pt-1">
+                        <div>
+                          <div className="text-[10px] opacity-60 uppercase font-mono">Registered Merchant</div>
+                          <div className="text-xs font-bold truncate max-w-[200px]">
+                            {cardBusinessName || "Your Business Name"}
+                          </div>
+                        </div>
+
+                        <div className="text-right">
+                          <div className="text-[9px] opacity-70 font-mono">Dual NFC + QR</div>
+                          <div className="text-[9px] font-semibold text-emerald-500">Tap or Scan</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Tap Simulation Trigger */}
+                    <div className="mt-5 w-full max-w-[350px]">
+                      <button
+                        onClick={() => setTapSimulationActive(!tapSimulationActive)}
+                        className="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+                      >
+                        <Smartphone className="w-4 h-4" />
+                        <span>{tapSimulationActive ? "Reset Tap Simulation" : "Simulate Customer Phone Tap"}</span>
+                      </button>
+
+                      {tapSimulationActive && (
+                        <div className="mt-3 p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 animate-in fade-in zoom-in-95 duration-200">
+                          <div className="flex items-center gap-2 text-emerald-300 font-bold text-xs mb-1">
+                            <Check className="w-4 h-4 text-emerald-400" />
+                            <span>Phone NFC Handshake Triggered!</span>
+                          </div>
+                          <p className="text-[11px] text-neutral-300 leading-relaxed">
+                            A browser sheet pops up on customer’s phone: <em>"Leave a review for {cardBusinessName} on Google Maps"</em> with 5 stars pre-selected.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Right: Card Customization Controls */}
+                  <div className="lg:col-span-6 p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-5 text-xs">
+                    <div>
+                      <h3 className="text-base font-bold text-white">Custom PVC Card Printing Specifications</h3>
+                      <p className="text-neutral-400 mt-1">
+                        Manufactured on premium rigid PVC plastic with matte or glossy UV lamination and embedded high-speed contactless microchips.
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div>
+                        <label className="block text-neutral-300 font-semibold mb-1">Business Name on Card</label>
+                        <input
+                          type="text"
+                          value={cardBusinessName}
+                          onChange={(e) => setCardBusinessName(e.target.value)}
+                          placeholder="e.g. Urban Cuts Salon & Spa"
+                          className="w-full p-2.5 rounded-lg bg-black/60 border border-neutral-800 text-white"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-neutral-300 font-semibold mb-1">Card Finish & Palette</label>
+                        <div className="grid grid-cols-3 gap-2">
+                          <button
+                            onClick={() => setCardColorTheme("classic")}
+                            className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                              cardColorTheme === "classic"
+                                ? "bg-white text-slate-900 border-sky-400 font-bold"
+                                : "bg-neutral-950 text-neutral-400 border-neutral-800"
+                            }`}
+                          >
+                            Classic Clean White
+                          </button>
+                          <button
+                            onClick={() => setCardColorTheme("gradient")}
+                            className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                              cardColorTheme === "gradient"
+                                ? "bg-blue-600 text-white border-blue-400 font-bold"
+                                : "bg-neutral-950 text-neutral-400 border-neutral-800"
+                            }`}
+                          >
+                            Vibrant Studio Blue
+                          </button>
+                          <button
+                            onClick={() => setCardColorTheme("dark")}
+                            className={`p-2 rounded-lg border text-center transition-all cursor-pointer ${
+                              cardColorTheme === "dark"
+                                ? "bg-neutral-800 text-white border-neutral-500 font-bold"
+                                : "bg-neutral-950 text-neutral-400 border-neutral-800"
+                            }`}
+                          >
+                            Matte Luxury Black
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-black/40 border border-neutral-800 space-y-2">
+                        <div className="font-semibold text-white">Technical Highlights:</div>
+                        <ul className="space-y-1 text-neutral-300 text-[11px]">
+                          <li className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                            <span><strong>NFC Chip:</strong> NTAG213 / NTAG215 with 100,000+ read endurance</span>
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                            <span><strong>Dual QR Code:</strong> High-resolution vector print on rear for older devices</span>
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                            <span><strong>Waterproof & Scratch-Resistant:</strong> Won’t fade on cash registers or salon desks</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Order Form for Cards */}
+                <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/40 border border-neutral-800 space-y-6">
+                  <div className="max-w-2xl">
+                    <span className="text-xs font-mono uppercase tracking-wider text-sky-400">Order Dispatch</span>
+                    <h3 className="text-xl font-bold text-white mt-1">Get Custom PVC Review Cards for Your Business</h3>
+                    <p className="text-xs text-neutral-400 mt-1">
+                      Choose your package. We encode your Google Maps place ID, verify the 5-star link, print, and courier directly to you.
+                    </p>
+                  </div>
+
+                  {cardOrderSuccess ? (
+                    <div className="p-6 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-center space-y-2">
+                      <Check className="w-8 h-8 text-emerald-400 mx-auto" />
+                      <h4 className="text-sm font-bold text-white">Card Order Request Received!</h4>
+                      <p className="text-xs text-neutral-300">
+                        We will message you on WhatsApp to confirm your Google Business Profile link and design mockup.
+                      </p>
+                    </div>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setCardOrderSuccess(true);
+                      }}
+                      className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs"
+                    >
+                      <div className="space-y-1">
+                        <label className="text-neutral-300 font-semibold">Select Pack</label>
+                        <select
+                          value={cardOrderPack}
+                          onChange={(e) => setCardOrderPack(e.target.value)}
+                          className="w-full p-2.5 rounded-lg bg-black/60 border border-neutral-800 text-white"
+                        >
+                          <option>Single Card (Standalone) — ₹499</option>
+                          <option>Card + Clear Acrylic Counter Stand — ₹699</option>
+                          <option>Store Pack (3 Cards + 1 Acrylic Stand) — ₹1,299</option>
+                          <option>Bulk Merchant Pack (10 Cards + 3 Stands) — ₹3,499</option>
+                          <option>Commercial Reseller Pack (25 Cards) — ₹5,999</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-neutral-300 font-semibold">Your WhatsApp / Phone</label>
+                        <input
+                          required
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          className="w-full p-2.5 rounded-lg bg-black/60 border border-neutral-800 text-white placeholder-neutral-500"
+                        />
+                      </div>
+
+                      <div className="flex items-end">
+                        <button
+                          type="submit"
+                          className="w-full py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold transition-all cursor-pointer shadow-md"
+                        >
+                          Submit Card Order
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+
+                {/* Recruiting & Reseller Program Section */}
+                <div id="reseller-section" className="p-6 sm:p-10 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-neutral-900 to-blue-950/20 border-2 border-emerald-500/30 space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        Sales Partnership & Recruiting
+                      </span>
+                      <h3 className="text-2xl font-bold text-white font-['Syne'] mt-2">
+                        Earn as a TapReview™ Field Sales Agent or Reseller
+                      </h3>
+                      <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl mt-1 leading-relaxed">
+                        Every salon, café, doctor clinic, and retail store wants more Google reviews. We recruit independent partners, freelancers, and students to sell custom PVC review cards in their local area with generous profit margins.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div className="p-4 rounded-xl bg-black/40 border border-neutral-800 space-y-2">
+                      <div className="font-bold text-emerald-400 text-sm">1. High Margins per Card</div>
+                      <p className="text-neutral-300 leading-relaxed">
+                        Buy at distributor rates (~₹249/card in bulk) and sell to local merchants at ₹699 to ₹999 with setup and support.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-black/40 border border-neutral-800 space-y-2">
+                      <div className="font-bold text-sky-400 text-sm">2. Complete Sample Kit</div>
+                      <p className="text-neutral-300 leading-relaxed">
+                        We provide demo NFC cards, sample counter stands, and digital sales brochures to demonstrate tap-to-review live.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-xl bg-black/40 border border-neutral-800 space-y-2">
+                      <div className="font-bold text-amber-400 text-sm">3. Zero Technical Overhead</div>
+                      <p className="text-neutral-300 leading-relaxed">
+                        You pitch the merchant and collect their Google Maps link; we handle chip encoding, testing, printing, and delivery.
+                      </p>
+                    </div>
+                  </div>
+
+                  {resellerApplicationSuccess ? (
+                    <div className="p-5 rounded-xl bg-emerald-950/50 border border-emerald-500/50 text-center space-y-1">
+                      <Check className="w-6 h-6 text-emerald-400 mx-auto" />
+                      <div className="font-bold text-white text-sm">Application Sent!</div>
+                      <p className="text-xs text-neutral-300">
+                        Our recruiting coordinator will reach out to you via WhatsApp with the reseller starter catalog.
+                      </p>
+                    </div>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setResellerApplicationSuccess(true);
+                      }}
+                      className="p-4 rounded-xl bg-black/50 border border-neutral-800/80 flex flex-col sm:flex-row gap-3 text-xs items-center"
+                    >
+                      <input
+                        required
+                        type="text"
+                        placeholder="Your Full Name"
+                        className="w-full sm:flex-1 p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500"
+                      />
+                      <input
+                        required
+                        type="tel"
+                        placeholder="WhatsApp Number"
+                        className="w-full sm:flex-1 p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500"
+                      />
+                      <input
+                        required
+                        type="text"
+                        placeholder="Your City / Region"
+                        className="w-full sm:flex-1 p-2.5 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-500"
+                      />
+                      <button
+                        type="submit"
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition-all cursor-pointer whitespace-nowrap"
+                      >
+                        Apply as Reseller
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
             </div>
           )}
 
